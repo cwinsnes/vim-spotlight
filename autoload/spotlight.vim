@@ -2,7 +2,7 @@ let s:prevcolor={}
 let s:prevcursorline=""
 let s:enabled=1
 
-let g:SpotlightTime=get(g:, 'Spotlight_time', 500)
+let g:SpotlightTime=get(g:, 'Spotlight_time', 200)
 
 function! spotlight#gethighlight(group)
   let output = execute('hi ' . a:group)
@@ -46,5 +46,3 @@ function! spotlight#spotlight()
   set cursorline
   let timer = timer_start(g:SpotlightTime, 'spotlight#removespotlight')
 endfunction
-
-autocmd! BufEnter * call spotlight#spotlight()
