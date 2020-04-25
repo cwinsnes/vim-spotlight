@@ -55,7 +55,7 @@ function! spotlight#spotlight()
   endif
   let s:prevcolor=spotlight#gethighlight('CursorLine')
   let s:prevcursorline=&cursorline
-  hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+  hi! link CursorLine SpotlightColor
   set cursorline
   let s:timer = timer_start(g:SpotlightTime, 'spotlight#removespotlight')
 endfunction
