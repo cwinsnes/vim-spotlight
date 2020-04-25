@@ -1,6 +1,7 @@
 let s:prevcolor={}
 let s:prevcursorline=""
 let s:enabled=1
+let s:timer=""
 
 let g:SpotlightTime=get(g:, 'Spotlight_time', 200)
 
@@ -17,6 +18,10 @@ function! spotlight#gethighlight(group)
   return dict
 endfunction
 
+function! spotlight#timerkill()
+  call spotlight#removespotlight(s:timer)
+endfunction
+
 function! spotlight#shouldspot()
   if !s:enabled
     return 0
@@ -30,10 +35,18 @@ function! spotlight#shouldspot()
 endfunction
 
 function! spotlight#removespotlight(timer)
+  if s:timer
+    let ignore = timer_stop(s:timer)
+    let s:timer = 0
+  else
+    return
+  endif
+
   let &cursorline=s:prevcursorline
   for item in keys(s:prevcolor)
     execute('hi CursorLine ' . item . '=' . s:prevcolor[item])
   endfor
+  redraw
 endfunction
 
 function! spotlight#spotlight()
@@ -44,5 +57,5 @@ function! spotlight#spotlight()
   let s:prevcursorline=&cursorline
   hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
   set cursorline
-  let timer = timer_start(g:SpotlightTime, 'spotlight#removespotlight')
+  let s:timer = timer_start(g:SpotlightTime, 'spotlight#removespotlight')
 endfunction

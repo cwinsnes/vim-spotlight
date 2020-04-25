@@ -5,6 +5,7 @@ endif
 let g:spotlight_loaded = 1
 
 if has('autocmd')
+    autocmd WinLeave * call spotlight#timerkill()
     autocmd WinEnter * call spotlight#spotlight()
 endif
 
