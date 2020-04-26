@@ -46,7 +46,6 @@ function! spotlight#removespotlight(timer)
   for item in keys(s:prevcolor)
     execute('hi CursorLine ' . item . '=' . s:prevcolor[item])
   endfor
-  redraw
 endfunction
 
 function! spotlight#spotlight()
