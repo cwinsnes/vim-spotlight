@@ -17,16 +17,17 @@ Plug 'cwinsnes/vim-spotlight'
 and then run `:PlugInstall`.
 
 ## Configuration
-The default spotlight time is 200ms. You can control this by the setting `g:Spotlight_time`. 
+The default spotlight time is 200ms. You can control this by the setting `g:SpotlightTime`. 
 ```viml
 " Time in milliseconds. Default 200
-let g:Spotlight_time=200
+let g:SpotlightTime=200
 ```
 
 The default spotlight color is black text with white background. You can
-control this by setting the highlight group.
+control this by setting the variable `g:SpotlightColor`.
 ```viml
-highlight SpotlightColor cterm=NONE ctermbg=white ctermfg=black guibg=white guifg=black
+" The color which to use for highlighting. Default is as below.
+let g:SpotlightColor = "cterm=NONE ctermbg=white ctermfg=black guibg=white guifg=black"
 ```
 
 You can blacklist filetypes which you do not want to get spotlighted when

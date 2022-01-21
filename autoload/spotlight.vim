@@ -3,7 +3,12 @@ let s:prevcursorline=""
 let s:enabled=1
 let s:timer=""
 
-let g:SpotlightTime=get(g:, 'Spotlight_time', 200)
+let g:SpotlightTime=get(g:, 'SpotlightTime', 200)
+let g:SpotlightColor = get(g:, 'SpotlightColor', "cterm=NONE ctermbg=white ctermfg=black guibg=white guifg=black")
+
+function! spotlight#setspotlightcolor()
+  execute "hi SpotlightColor " . g:SpotlightColor
+endfunction
 
 function! spotlight#gethighlight(group)
   let output = execute('hi ' . a:group)
